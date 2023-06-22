@@ -1,25 +1,48 @@
-import './App.css';
+import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useAppDispatch } from '@store/store';
+import { me } from '@store/reducers/rootReducer';
+import { Home } from '@pages/Home';
+import { Login } from '@pages/Login';
+import './App.css';
 import { Orders } from '@pages/Orders';
 import { Menu } from '@pages/Menu';
 import { Settings } from '@pages/Settings';
 
-export const routes = [
-    { id: 1, path: '/', element: <Orders /> },
-    { id: 2, path: '/menu', element: <Menu /> },
-    { id: 3, path: '/settings', element: <Settings /> },
-];
-
 export const App = () => {
-    return (
-        <div className="App">
-            <BrowserRouter>
-                <Routes>
-                    {routes.map(({ path, element, id }) => (
-                        <Route path={path} element={element} key={id} />
-                    ))}
-                </Routes>
-            </BrowserRouter>
-        </div>
-    );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(me());
+  }, []);
+
+  return (
+      <div className='App'>
+        <BrowserRouter>
+          <Routes>
+            <Route
+                path={'/login'}
+                element={<Login/>}
+            />
+            <Route
+                path={'/'}
+                element={<Home/>}
+            >
+              <Route
+                  path={'/orders'}
+                  element={<Orders/>}
+              />
+              <Route
+                  path={'/menu'}
+                  element={<Menu/>}
+              />
+              <Route
+                  path={'/settings'}
+                  element={<Settings/>}
+              />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
+  );
 };
