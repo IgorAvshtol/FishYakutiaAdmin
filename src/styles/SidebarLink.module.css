@@ -1,0 +1,27 @@
+.linkBlock {
+    width: 220px;
+    margin-bottom: 10px;
+    padding: 19px 24px;
+    display: flex;
+    align-items: center;
+    border-radius: 11px;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.linkText {
+    margin-left: 18px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #131123;
+}
+
+.linkBlock:first-child {
+    padding: 19px 18px;
+}
+
+.linkBlock:first-child p {
+    margin-left: 15px;
+}

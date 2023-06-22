@@ -1,0 +1,32 @@
+.sidebarBlock {
+    width: 290px;
+    height: 100vh;
+    box-sizing: border-box;
+    background: #F5F7F9;
+    padding: 80px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.linksBlock {
+    margin-top: 51px;
+}
+
+.logoutBtn {
+    margin-top: 330px;
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #CCC;
+    font-size: 12px;
+    font-family: SF Pro Display, sans-serif;
+    font-weight: 600;
+    line-height: 125%;
+    cursor: pointer;
+}
+
+.logoutBtn p {
+    margin: 3px 0 0 12px;
+}
