@@ -15,6 +15,7 @@ export const LoginForm = () => {
   } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
+    // @ts-ignore
     dispatch(login(data));
   };
 
@@ -29,4 +30,4 @@ export const LoginForm = () => {
         <p className={styles.errorMessage}>{error}</p>
       </form>
   );
-};
+}

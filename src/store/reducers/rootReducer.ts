@@ -1,5 +1,5 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LoginSuccessResponse, RootState } from '@/interfaces';
+import { RootState } from '@/interfaces';
 
 export const initialState: RootState = {
   currentUser: '',
@@ -15,7 +15,7 @@ export const rootReducer = createSlice({
       state.loading = true;
       state.error = '';
     },
-    loginSuccess: (state, action: PayloadAction<LoginSuccessResponse>) => {
+    loginSuccess: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = '';
       state.currentUser = action.payload;
