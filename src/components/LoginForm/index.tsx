@@ -30,4 +30,4 @@ export const LoginForm = () => {
         <p className={styles.errorMessage}>{error}</p>
       </form>
   );
-}
+};

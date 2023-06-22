@@ -1,10 +1,11 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '@/interfaces';
+import { RootState, Tabs } from '@/interfaces';
 
 export const initialState: RootState = {
   currentUser: '',
   error: '',
   loading: false,
+  activeTab: Tabs.ORDERS,
 };
 
 export const rootReducer = createSlice({
@@ -29,6 +30,9 @@ export const rootReducer = createSlice({
       state.error = '';
       state.currentUser = '';
     },
+    toggleTab: (state, action: PayloadAction<Tabs>) => {
+      state.activeTab = action.payload;
+    },
   },
 });
 
@@ -42,4 +46,5 @@ export const {
   loginSuccess,
   loginFailure,
   logOut,
+  toggleTab
 } = rootReducer.actions;

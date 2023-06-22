@@ -6,7 +6,7 @@ import styles from '@/styles/LoginPage.module.css';
 export const Login = () => {
   const { currentUser } = useAppSelector(state => state.root);
 
-  if (currentUser) return <Navigate to='/home'/>;
+  if (currentUser) return <Navigate to='/orders'/>;
 
   return (
       <div className={styles.main}>

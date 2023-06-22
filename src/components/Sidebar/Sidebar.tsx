@@ -1,11 +1,11 @@
+import { SlBasket } from 'react-icons/sl';
+import { HiOutlineClipboardList } from 'react-icons/hi';
+import { RiSettingsLine } from 'react-icons/ri';
 import { SidebarLink } from '@components/Sidebar/SidebarLink';
 import { useAppDispatch } from '@store/store';
 import { logout } from '@store/reducers/rootReducer';
 import styles from '@/styles/Sidebar.module.css';
 import logo from '@/assets/logo.svg';
-import basket from '@/assets/basket.svg';
-import menu from '@/assets/menu.svg';
-import settings from '@/assets/settings.svg';
 import logoutLogo from '@/assets/logout.svg';
 
 export const Sidebar = () => {
@@ -19,9 +19,9 @@ export const Sidebar = () => {
       <div className={styles.sidebarBlock}>
         <img src={logo} alt='logo'/>
         <div className={styles.linksBlock}>
-          <SidebarLink href='/orders' text='Заказы' logoUrl={basket}/>
-          <SidebarLink href='/menu' text='Меню' logoUrl={menu}/>
-          <SidebarLink href='/settings' text='Настройки' logoUrl={settings}/>
+          <SidebarLink href='/orders' text='Заказы' Icon={SlBasket}/>
+          <SidebarLink href='/menu' text='Меню' Icon={HiOutlineClipboardList}/>
+          <SidebarLink href='/settings' text='Настройки' Icon={RiSettingsLine}/>
         </div>
         <button className={styles.logoutBtn} onClick={onLogoutBtnClick}>
           <img src={logoutLogo} alt='logout'/>
