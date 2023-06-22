@@ -1,12 +1,13 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import { login } from '@store/reducers/rootReducer';
+import { getLoginError } from '@store/selectors';
 import styles from '@/styles/LoginForm.module.css';
 import { FormData } from '@/interfaces';
 
 export const LoginForm = () => {
   const dispatch = useAppDispatch();
-  const { error } = useAppSelector(state => state.root);
+  const error = useAppSelector(getLoginError);
 
   const {
     register,

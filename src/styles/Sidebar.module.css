@@ -1,8 +1,10 @@
+@import "colors.css";
+
 .sidebarBlock {
     width: 290px;
     height: 100vh;
     box-sizing: border-box;
-    background: #F5F7F9;
+    background: var(--sidebar-background-color);
     padding: 80px 0;
     display: flex;
     flex-direction: column;
@@ -19,7 +21,7 @@
     align-items: center;
     background: none;
     border: none;
-    color: #CCC;
+    color: var(--primary-gray-color);
     font-size: 12px;
     font-family: SF Pro Display, sans-serif;
     font-weight: 600;

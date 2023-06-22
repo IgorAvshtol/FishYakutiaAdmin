@@ -14,7 +14,7 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(me());
-  }, [dispatch]);
+  }, []);
 
   return (
       <div className='App'>
