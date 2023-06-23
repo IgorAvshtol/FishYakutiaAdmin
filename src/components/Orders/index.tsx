@@ -1,16 +1,16 @@
 import { Accordion, AccordionButton, AccordionItem, AccordionPanel } from '@chakra-ui/accordion';
-import { OrderItems } from '@components/Order/OrderItems';
-import { OrderPreview } from '@components/Order/OrderPreview';
-import { OrderOtherInformation } from '@components/Order/OrderOtherInformation';
+import { OrderItems } from '@components/Orders/OrderItems';
+import { OrderPreview } from '@components/Orders/OrderPreview';
+import { OrderOtherInformation } from '@components/Orders/OrderOtherInformation';
 import { dateParser } from '@utils/dateParser';
-import { Orders } from '@/interfaces';
+import { Orders as OrdersType } from '@/interfaces';
 import styles from '@styles/Orders.module.css';
 
 interface OrderProps {
-  orders: Orders[];
+  orders: OrdersType[];
 }
 
-export const Order = ({ orders }: OrderProps) => {
+export const Orders = ({ orders }: OrderProps) => {
 
   if (!orders.length) return <p>Loading...</p>;
 

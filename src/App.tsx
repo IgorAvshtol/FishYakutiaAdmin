@@ -5,7 +5,7 @@ import { me } from '@store/reducers/rootReducer';
 import { Home } from '@pages/Home';
 import { Login } from '@pages/Login';
 import './App.css';
-import { Orders } from '@pages/Orders';
+import { OrdersPage } from '@pages/Orders';
 import { Menu } from '@pages/Menu';
 import { Settings } from '@pages/Settings';
 
@@ -30,7 +30,7 @@ export const App = () => {
             >
               <Route
                   path={'/orders'}
-                  element={<Orders/>}
+                  element={<OrdersPage/>}
               />
               <Route
                   path={'/menu'}

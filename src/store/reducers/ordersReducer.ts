@@ -1,8 +1,9 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Orders, OrdersState } from '@/interfaces';
+import { GetOrders, OrdersState } from '@/interfaces';
 
 export const initialState: OrdersState = {
   orders: [],
+  totalOrdersPages: 1,
   loading: false,
   error: '',
 };
@@ -15,10 +16,11 @@ export const ordersReducer = createSlice({
       state.loading = true;
       state.error = '';
     },
-    getOrdersSuccess: (state, action: PayloadAction<Orders[]>) => {
+    getOrdersSuccess: (state, action: PayloadAction<GetOrders>) => {
       state.loading = false;
       state.error = '';
-      state.orders = action.payload;
+      state.orders = action.payload.orders;
+      state.totalOrdersPages = action.payload.totalOrders;
     },
     getOrdersFailure: (state, action: PayloadAction<string>) => {
       state.loading = false;
@@ -27,7 +29,7 @@ export const ordersReducer = createSlice({
   },
 });
 
-export const getOrders = createAction('GET_ORDERS');
+export const getOrders = createAction<number>('GET_ORDERS');
 
 
 export const {

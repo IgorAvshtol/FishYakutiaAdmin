@@ -7,6 +7,7 @@ export interface RootState {
 
 export interface OrdersState {
   orders: Orders[];
+  totalOrdersPages: number;
   loading: boolean;
   error: string;
 }
@@ -49,4 +50,9 @@ interface Order {
 
 export interface Orders {
   [key: string]: Order[];
+}
+
+export interface GetOrders {
+  orders: Orders[];
+  totalOrders: number;
 }
