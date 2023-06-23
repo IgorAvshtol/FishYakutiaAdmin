@@ -1,0 +1,123 @@
+@import "colors.css";
+
+.ordersBlock {
+    padding: 20px;
+}
+
+.title {
+    color: var(--secondary-black-color);
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.orderDate {
+    margin-top: 20px;
+    color: var(--orderdate-color);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.orderBlock {
+    margin-top: 10px;
+    width: 600px;
+    border-radius: 10px;
+    background: var(--orderblock-color);
+}
+
+.orderPreview {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    width: 600px;
+    border-radius: 10px;
+    border: none;
+    background: var(--orderblock-color);
+    padding: 21px 15px;
+}
+
+.orderPreviewTitle {
+    color: var(--primary-black-color);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.orderPrice {
+    color: var(--orderprice-color);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.moreContentBlock {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+}
+
+.contentOrderTitle {
+    color: var(--orderprice-color);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.contentList {
+    display: flex;
+}
+
+.contentListTitleBlock {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contentListPositionTitle {
+    width: 70%;
+    color: var(--orderprice-color);
+    font-size: 10px;
+}
+
+.contentListTitle {
+    width: 10%;
+    color: var(--orderprice-color);
+    font-size: 10px;
+}
+
+.orderItems {
+    margin-top: 10px;
+}
+
+.orderItemBlock {
+    margin-top: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.orderItemName {
+    width: 70%;
+    color: var(--orderprice-color);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.orderItem {
+    width: 10%;
+    color: var(--orderprice-color);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.addressTitle {
+    margin-top: 20px;
+    color: var(--orderprice-color);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.address {
+    color: var(--orderprice-color);
+    font-size: 16px;
+}
+
+.otherInformation {
+    padding: 0 15px 15px;
+}

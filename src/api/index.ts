@@ -32,3 +32,12 @@ export const logoutUser = async () => {
     throw new Error(error.response.data.error);
   }
 };
+
+export const getAllUsersOrders = async () => {
+  try {
+    const response = await instance.get('/orders');
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.error);
+  }
+};

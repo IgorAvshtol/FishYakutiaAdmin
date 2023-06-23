@@ -3,6 +3,10 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+p {
+  margin: 0;
+}
+
 @font-face {
   font-family: 'Montserrat', sans-serif;
   src: local('Montserrat-Medium'), url('assets/fonts/Montserrat-Medium.ttf') format('opentype');
