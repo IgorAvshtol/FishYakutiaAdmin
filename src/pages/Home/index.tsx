@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '@store/store';
 import { toggleTab } from '@store/reducers/rootReducer';
 import { getActiveTab, getCurrentUser } from '@store/selectors';
 import { Sidebar } from '@components/Sidebar/Sidebar';
-import { Orders } from '@pages/Orders';
+import { OrdersPage } from '@pages/Orders';
 import { Menu } from '@pages/Menu';
 import { Settings } from '@pages/Settings';
 import { Tabs } from '@/interfaces';
@@ -25,7 +25,7 @@ export const Home = () => {
   return (
       <div className={styles.homeBlock}>
         <Sidebar/>
-        {activeTab === Tabs.ORDERS && <Orders/>}
+        {activeTab === Tabs.ORDERS && <OrdersPage/>}
         {activeTab === Tabs.MENU && <Menu/>}
         {activeTab === Tabs.SETTINGS && <Settings/>}
       </div>
