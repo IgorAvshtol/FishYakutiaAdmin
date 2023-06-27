@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FormData } from '@/interfaces';
+import { CreateCategoryData, CreateProductData, FormData } from '@/interfaces';
 
 export const instance = axios.create({
   withCredentials: true,
@@ -39,5 +39,55 @@ export const getAllUsersOrders = async (page: number) => {
     return response.data;
   } catch (error: any) {
     throw new Error(error.response.data.error);
+  }
+};
+
+export const getAllCategories = async () => {
+  try {
+    const response = await instance.get('/categories');
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+export const createCategory = async (data: CreateCategoryData) => {
+  try {
+    const response = await instance.post('/add-category', data);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+export const deleteCategory = async (id: number) => {
+  try {
+    const response = await instance.delete(`/category/${id}`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+export const getProducts = async (page: number) => {
+  try {
+    const response = await instance.get(`/foods?page=${page}`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+export const createProduct = async (data: CreateProductData) => {
+  try {
+
+    const response = await instance.post(
+        '/add-food',
+        data,
+        { headers: { 'Content-Type': 'multipart/form-data' }}
+    );
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.message);
   }
 };

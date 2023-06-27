@@ -2,6 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { getAllUsersOrders } from '@/api';
 import { getOrdersFailure, getOrdersPending, getOrdersSuccess } from '@store/reducers/ordersReducer';
 import { PayloadAction } from '@reduxjs/toolkit';
+import { SagaActions } from '@store/sagas/types';
 
 function* getAllOrders(action: PayloadAction<number>) {
   try {
@@ -15,5 +16,5 @@ function* getAllOrders(action: PayloadAction<number>) {
 }
 
 export function* watchGetOrders() {
-  yield takeLatest('GET_ORDERS', getAllOrders);
+  yield takeLatest(SagaActions.GET_ORDERS, getAllOrders);
 }

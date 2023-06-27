@@ -2,6 +2,7 @@
 
 .sidebarBlock {
     width: 290px;
+    min-width: 290px;
     height: 100vh;
     box-sizing: border-box;
     background: var(--sidebar-background-color);

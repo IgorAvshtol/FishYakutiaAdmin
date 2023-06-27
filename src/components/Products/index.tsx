@@ -1,16 +1,16 @@
+import { ProductsTableTitle } from '@components/Products/ProductsTableTitle';
+import { Product } from '@components/Products/Product';
 import { useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
 import { useAppDispatch, useAppSelector } from '@store/store';
-import { getOrders } from '@store/sagas/actions';
-import { getOrdersSelector, getTotalOrdersPagesCount } from '@store/selectors';
-import { Orders } from '@components/Orders';
+import { getProductsSelector, getTotalProductsPagesCount } from '@store/selectors';
 import style from '@styles/Pagination.module.css';
-import styles from '@styles/Page.module.css';
+import ReactPaginate from 'react-paginate';
+import { getProductsAction } from '@store/reducers/productsReducer';
 
-export const OrdersPage = () => {
+export const Products = () => {
   const dispatch = useAppDispatch();
-  const orders = useAppSelector(getOrdersSelector);
-  const totalCount = useAppSelector(getTotalOrdersPagesCount);
+  const products = useAppSelector(getProductsSelector);
+  const totalCount = useAppSelector(getTotalProductsPagesCount);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const handlePageClick = (event: any) => {
@@ -18,15 +18,24 @@ export const OrdersPage = () => {
   };
 
   useEffect(() => {
-    dispatch(getOrders(currentPage));
+    dispatch(getProductsAction(currentPage));
   }, [currentPage]);
 
-  if (!orders.length) return <p>Loading...</p>;
+  if (!products.length) return <p>Загрузка...</p>;
 
   return (
-      <div className={styles.mainBlock}>
-        <p className={styles.title}>Заказы</p>
-        <Orders orders={orders}/>
+      <div>
+        <ProductsTableTitle/>
+        {
+          products.map(product => {
+                return <Product key={product.id}
+                                name={product.name}
+                                category={product.category.title}
+                                price={product.price}
+                />;
+              }
+          )
+        }
         <div className={style.paginationBlock}>
           <ReactPaginate
               onPageChange={handlePageClick}
