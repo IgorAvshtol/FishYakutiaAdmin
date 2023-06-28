@@ -1,5 +1,5 @@
-import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CreateProductData, Food, GetProducts, ProductsState } from '@/interfaces';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Food, GetProducts, ProductsState } from '@/interfaces';
 
 export const initialState: ProductsState = {
   products: [],
@@ -36,10 +36,6 @@ export const productsReducer = createSlice({
     },
   },
 });
-
-export const getProductsAction = createAction<number>('GET_PRODUCTS');
-export const createProductsAction = createAction<CreateProductData>('CREATE_PRODUCTS');
-
 
 export const {
   getProductsPending,

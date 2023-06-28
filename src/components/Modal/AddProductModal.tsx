@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import { getCategories, getCreateProductError } from '@store/selectors';
-import { createProductsAction } from '@store/reducers/productsReducer';
+import { createProductAction } from '@store/sagas/actions';
 import { themeColors } from '@constants/themeColors';
 import { Button } from '@components/Button';
 import { Select } from '@components/Select';
+import photo from '@assets/photo.svg';
 import styles from '@styles/Modal.module.css';
 
 interface AddProductModal {
@@ -20,6 +21,10 @@ const priceUnit = [
   { id: 1, title: 'Цена за 1 кг' }
 ];
 
+const response = await fetch(photo);
+const blob = await response.blob();
+const defaultImageFile = new File([blob], 'photo.svg', { type: 'image/svg+xml' });
+
 export const AddProductModal = () => {
   const dispatch = useAppDispatch();
   const [file, setFile] = useState<File | Blob>();
@@ -29,7 +34,7 @@ export const AddProductModal = () => {
     handleSubmit,
     setValue,
     clearErrors,
-    formState: { errors },
+    formState: { errors},
   } = useForm<AddProductModal>();
 
   const categories = useAppSelector(getCategories);
@@ -43,7 +48,12 @@ export const AddProductModal = () => {
     formData.append('name', addProductData.name);
     formData.append('price', addProductData.price);
     formData.append('categoryId', addProductData.categoryId);
-    file && formData.append('image', file);
+
+    if (file) {
+      formData.append('image', file as File);
+    } else {
+      formData.append('image', defaultImageFile);
+    }
 
     const payload = {
       name: formData.get('name') as string,
@@ -52,7 +62,7 @@ export const AddProductModal = () => {
       image: formData.get('image') as File,
     };
 
-    dispatch(createProductsAction(payload));
+    dispatch(createProductAction(payload));
   };
 
   const uploadPhotoHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,13 +104,12 @@ export const AddProductModal = () => {
         <div className={styles.addPhotoBlock}>
           <p className={styles.title}>Фотография</p>
           <div className={styles.addPhotoInputBlock}>
-            <img src={file && URL.createObjectURL(file)} alt='фото' className={styles.productPhoto}/>
+            <img src={file ? URL.createObjectURL(file) : photo} alt='фото' className={styles.productPhoto}/>
             <label className={styles.addPhotoInput}>
-              <input type='file' {...register('image', { required: true })} onChange={uploadPhotoHandler}/>
+              <input type='file' {...register('image')} onChange={uploadPhotoHandler}/>
               <span>Загрузить...</span>
             </label>
           </div>
-          {errors.image && <p className={styles.errorMessage}>Это поле обязательно</p>}
         </div>
         <Button buttonStyle={{ color: themeColors.ACTIVE, marginTop: '20px', padding: '10px 40px' }}>
           Сохранить

@@ -12,7 +12,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       const [showOptions, setShowOptions] = useState<boolean>(false);
       const [selectedOption, setSelectedOption] = useState<string>('');
 
-      const { setValue, clearErrors, type, options } = props;
+      const { setValue, clearErrors, type, options, ...other } = props;
       const onSelectClick = () => {
         setShowOptions(!showOptions);
       };
@@ -37,7 +37,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>((props, ref) => {
       }, []);
 
       return (
-          <div className={styles.select} onClick={onSelectClick} ref={ref} {...props}>
+          <div className={styles.select} onClick={onSelectClick} ref={ref} {...other}>
             <p className={styles.selectedOption}>{selectedOption || options[0].title}</p>
             {
                 showOptions && <div className={styles.optionsList}>
