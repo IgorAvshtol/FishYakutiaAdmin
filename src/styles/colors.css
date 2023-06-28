@@ -10,4 +10,11 @@
     --orderdate-color: #5E6E7D;
     --orderprice-color: #030229;
     --orderblock-color: #F5F5F5;
+    --drawer-color: rgba(3, 2, 41, 0.3);
+    --modaltitle-color: #5E6E7D;
+    --primary-button-background: #306EA9;
+    --input-background: #F5F5F5;
+    --category-background: #F5F5F5;
+    --productstabletitle-color: #5E6E7D;
+    --producttitle-color: #131123;
 }

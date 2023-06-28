@@ -3,7 +3,7 @@ import { HiOutlineClipboardList } from 'react-icons/hi';
 import { RiSettingsLine } from 'react-icons/ri';
 import { SidebarLink } from '@components/Sidebar/SidebarLink';
 import { useAppDispatch } from '@store/store';
-import { logout } from '@store/reducers/rootReducer';
+import { logout } from '@store/sagas/actions';
 import styles from '@/styles/Sidebar.module.css';
 import logo from '@/assets/logo.svg';
 import logoutLogo from '@/assets/logout.svg';

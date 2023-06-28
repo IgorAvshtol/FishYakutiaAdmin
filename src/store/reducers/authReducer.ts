@@ -1,4 +1,4 @@
-import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, Tabs } from '@/interfaces';
 
 export const initialState: RootState = {
@@ -8,8 +8,8 @@ export const initialState: RootState = {
   activeTab: Tabs.ORDERS,
 };
 
-export const rootReducer = createSlice({
-  name: 'rootReducer',
+export const authReducer = createSlice({
+  name: 'authReducer',
   initialState,
   reducers: {
     loginPending: (state) => {
@@ -36,15 +36,10 @@ export const rootReducer = createSlice({
   },
 });
 
-export const login = createAction('LOGIN');
-export const me = createAction('ME');
-export const logout = createAction('LOGOUT');
-
-
 export const {
   loginPending,
   loginSuccess,
   loginFailure,
   logOut,
   toggleTab
-} = rootReducer.actions;
+} = authReducer.actions;

@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@store/store';
-import { login } from '@store/reducers/rootReducer';
+import { login } from '@store/sagas/actions';
 import { getLoginError } from '@store/selectors';
 import styles from '@/styles/LoginForm.module.css';
 import { FormData } from '@/interfaces';

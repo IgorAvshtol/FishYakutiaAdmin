@@ -1,16 +1,5 @@
 @import "colors.css";
 
-.ordersBlock {
-    padding: 20px;
-    width: 100%;
-}
-
-.title {
-    color: var(--secondary-black-color);
-    font-size: 24px;
-    font-weight: 500;
-}
-
 .orderDate {
     margin-top: 20px;
     color: var(--orderdate-color);

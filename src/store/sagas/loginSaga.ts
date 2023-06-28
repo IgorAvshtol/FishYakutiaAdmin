@@ -1,8 +1,9 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { loginUser, logoutUser, me } from '@/api';
-import { loginFailure, loginPending, loginSuccess, logOut } from '@store/reducers/rootReducer';
+import { loginFailure, loginPending, loginSuccess, logOut } from '@store/reducers/authReducer';
 import { FormData } from '@/interfaces';
+import { SagaActions } from '@store/sagas/types';
 
 function* login(action: PayloadAction<FormData>) {
   try {
@@ -39,7 +40,7 @@ function* logout() {
 }
 
 export function* watchAuth() {
-  yield takeLatest('LOGIN', login);
-  yield takeLatest('ME', getMe);
-  yield takeLatest('LOGOUT', logout);
+  yield takeLatest(SagaActions.LOGIN_USER, login);
+  yield takeLatest(SagaActions.ME, getMe);
+  yield takeLatest(SagaActions.LOGOUT_USER, logout);
 }

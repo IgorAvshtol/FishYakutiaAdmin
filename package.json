@@ -11,8 +11,12 @@
   },
   "dependencies": {
     "@chakra-ui/accordion": "^2.2.0",
+    "@chakra-ui/system": "^2.5.8",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
+    "framer-motion": "^10.12.17",
     "prettier": "^2.8.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

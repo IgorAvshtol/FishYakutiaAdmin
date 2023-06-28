@@ -1,4 +1,4 @@
-import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GetOrders, OrdersState } from '@/interfaces';
 
 export const initialState: OrdersState = {
@@ -28,9 +28,6 @@ export const ordersReducer = createSlice({
     },
   },
 });
-
-export const getOrders = createAction<number>('GET_ORDERS');
-
 
 export const {
   getOrdersPending,

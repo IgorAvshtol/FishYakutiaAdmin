@@ -1,0 +1,11 @@
+.mainBlock {
+    padding: 20px;
+    width: 90%;
+    position: relative;
+}
+
+.title {
+    color: var(--secondary-black-color);
+    font-size: 24px;
+    font-weight: 500;
+}
