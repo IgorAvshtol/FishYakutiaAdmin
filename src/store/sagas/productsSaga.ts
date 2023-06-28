@@ -10,6 +10,7 @@ import {
 } from '@store/reducers/productsReducer';
 import { closeModal } from '@store/reducers/modalReducer';
 import { CreateProductData } from '@/interfaces';
+import { SagaActions } from '@store/sagas/types';
 
 function* getAllProducts(action: PayloadAction<number>) {
   try {
@@ -26,7 +27,6 @@ function* createNewProduct(action: PayloadAction<CreateProductData>) {
   try {
     // @ts-ignore
     const response = yield call(createProduct, action.payload);
-    console.log(response);
     yield put(createProductsSuccess(response));
     yield put(closeModal());
   } catch (error: any) {
@@ -35,6 +35,6 @@ function* createNewProduct(action: PayloadAction<CreateProductData>) {
 }
 
 export function* watchGetProducts() {
-  yield takeLatest('GET_PRODUCTS', getAllProducts);
-  yield takeLatest('CREATE_PRODUCTS', createNewProduct);
+  yield takeLatest(SagaActions.GET_PRODUCTS, getAllProducts);
+  yield takeLatest(SagaActions.CREATE_PRODUCT, createNewProduct);
 }

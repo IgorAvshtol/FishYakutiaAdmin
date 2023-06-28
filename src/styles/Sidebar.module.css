@@ -1,6 +1,7 @@
 @import "colors.css";
 
 .sidebarBlock {
+    position: fixed;
     width: 290px;
     min-width: 290px;
     height: 100vh;

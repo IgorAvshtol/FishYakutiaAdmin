@@ -1,11 +1,12 @@
-import { ProductsTableTitle } from '@components/Products/ProductsTableTitle';
-import { Product } from '@components/Products/Product';
 import { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import { getProductsSelector, getTotalProductsPagesCount } from '@store/selectors';
+import { getProductsAction } from '@store/sagas/actions';
+import { ProductsTableTitle } from '@components/Products/ProductsTableTitle';
+import { Product } from '@components/Products/Product';
 import style from '@styles/Pagination.module.css';
-import ReactPaginate from 'react-paginate';
-import { getProductsAction } from '@store/reducers/productsReducer';
+import styles from '@styles/Page.module.css';
 
 export const Products = () => {
   const dispatch = useAppDispatch();
@@ -21,7 +22,7 @@ export const Products = () => {
     dispatch(getProductsAction(currentPage));
   }, [currentPage]);
 
-  if (!products.length) return <p>Загрузка...</p>;
+  if (!products.length) return <p className={styles.notFoundMessage}>Продуктов нет</p>;
 
   return (
       <div>

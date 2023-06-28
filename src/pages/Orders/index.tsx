@@ -21,7 +21,7 @@ export const OrdersPage = () => {
     dispatch(getOrders(currentPage));
   }, [currentPage]);
 
-  if (!orders.length) return <p>Loading...</p>;
+  if (!orders.length) return <p className={styles.notFoundMessage}>Заказов нет</p>;
 
   return (
       <div className={styles.mainBlock}>

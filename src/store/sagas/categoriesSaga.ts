@@ -11,6 +11,7 @@ import {
 import { createCategory, deleteCategory, getAllCategories } from '@/api';
 import { CreateCategoryData } from '@/interfaces';
 import { SagaActions } from '@store/sagas/types';
+import { closeModal } from '@store/reducers/modalReducer';
 
 function* getCategories() {
   try {
@@ -27,6 +28,7 @@ function* createNewCategory(action: PayloadAction<CreateCategoryData>) {
     // @ts-ignore
     const response = yield call(createCategory, action.payload);
     yield put(createCategorySuccess(response));
+    yield put(closeModal());
   } catch (error: any) {
     yield put(createCategoryFailure(error.message));
   }
