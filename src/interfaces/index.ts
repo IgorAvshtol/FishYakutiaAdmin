@@ -46,6 +46,18 @@ export enum ModalsType {
   ADD_PRODUCT = 'ADD_PRODUCT',
 }
 
+export enum SortOrder {
+  ASC = 'asc',
+  DESC = 'desc'
+}
+
+export enum SortField {
+  ID = 'id',
+  PRICE = 'price',
+  CATEGORYID = 'categoryId',
+  NAME = 'name'
+}
+
 interface FoodImage {
   id: number;
   filename: string;
@@ -90,6 +102,12 @@ export interface GetOrders {
 export interface GetProducts {
   foods: Food[];
   totalFoodsPages: number;
+}
+
+export interface GetProductsPayload {
+  page: number;
+  sortOrder: SortOrder;
+  sortField: SortField;
 }
 
 export interface Category {
