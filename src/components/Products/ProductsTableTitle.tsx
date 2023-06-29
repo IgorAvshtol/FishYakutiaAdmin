@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { FaSort } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { SortField, SortOrder } from '@/interfaces';
@@ -11,10 +12,10 @@ interface ProductsTableTitle {
 
 export const ProductsTableTitle = ({ sortOrder, setSortField, setSortOrder }: ProductsTableTitle) => {
 
-  const onSortBtnClick = (sortField: SortField) => {
+  const onSortBtnClick = useCallback((sortField: SortField) => {
     setSortField(sortField);
     setSortOrder(sortOrder === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC);
-  };
+  },[setSortField, setSortOrder, sortOrder]);
 
   return (
       <div className={styles.productsTableTitleBlock}>
