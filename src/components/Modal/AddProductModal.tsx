@@ -61,7 +61,6 @@ export const AddProductModal = () => {
       categoryId: formData.get('categoryId') as string,
       image: formData.get('image') as File,
     };
-
     dispatch(createProductAction(payload));
   };
 

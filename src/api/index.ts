@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CreateCategoryData, CreateProductData, FormData, GetProductsPayload } from '@/interfaces';
+import { CreateCategoryData, CreateProductData, DeleteProductsData, FormData, GetProductsPayload } from '@/interfaces';
 
 export const instance = axios.create({
   withCredentials: true,
@@ -85,6 +85,15 @@ export const createProduct = async (data: CreateProductData) => {
         data,
         { headers: { 'Content-Type': 'multipart/form-data' } }
     );
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
+export const deleteProducts = async (data: DeleteProductsData) => {
+  try {
+    const response = await instance.delete('/foods', { data });
     return response.data;
   } catch (error: any) {
     throw new Error(error.message);
