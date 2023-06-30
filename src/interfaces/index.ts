@@ -18,6 +18,7 @@ export interface ProductsState {
   loading: boolean;
   error: string;
   createProductError: string;
+  deleteProductsError: string;
 }
 
 export interface ModalsState {
@@ -69,6 +70,7 @@ export interface Food {
   name: string;
   images: FoodImage[];
   price: string;
+  isDeleted: boolean;
   category: Category;
 }
 
@@ -131,10 +133,6 @@ export interface CreateProductData {
   categoryId: string;
 }
 
-export interface CreateProductResponseData {
-  id: number;
-  name: string;
-  images: FoodImage[];
-  price: string;
-  categoryId: string;
+export interface DeleteProductsData {
+  userIds: number[];
 }

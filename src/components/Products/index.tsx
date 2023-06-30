@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import { getCreateProductLoading, getProductsSelector, getTotalProductsPagesCount } from '@store/selectors';
 import { getProductsAction } from '@store/sagas/actions';
 import { ProductsTableTitle } from '@components/Products/ProductsTableTitle';
 import { Product } from '@components/Products/Product';
+import { SortField, SortOrder } from '@/interfaces';
+import { getAllProductsIds } from '@utils/getAllProductsIds';
 import style from '@styles/Pagination.module.css';
 import styles from '@styles/Page.module.css';
-import { SortField, SortOrder } from '@/interfaces';
 
 export const Products = () => {
   const dispatch = useAppDispatch();
@@ -17,10 +18,13 @@ export const Products = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [sortField, setSortField] = useState<SortField>(SortField.ID);
   const [sortOrder, setSortOrder] = useState<SortOrder>(SortOrder.ASC);
+  const [selectedProductsIds, setSelectedProductsIds] = useState<number[]>([]);
 
   const handlePageClick = (event: any) => {
     setCurrentPage(event.selected + 1);
   };
+
+  const allProductsId = useMemo(() => getAllProductsIds(products), [products]);
 
   useEffect(() => {
     dispatch(getProductsAction({ page: currentPage, sortField, sortOrder }));
@@ -31,13 +35,22 @@ export const Products = () => {
 
   return (
       <div>
-        <ProductsTableTitle sortOrder={sortOrder} setSortField={setSortField} setSortOrder={setSortOrder}/>
+        <ProductsTableTitle selectedProductsIds={selectedProductsIds}
+                            setSelectedProductsIds={setSelectedProductsIds}
+                            allProductsId={allProductsId}
+                            sortOrder={sortOrder}
+                            setSortField={setSortField}
+                            setSortOrder={setSortOrder}
+        />
         {
           products.map(product => {
                 return <Product key={product.id}
+                                id={product.id}
                                 name={product.name}
                                 category={product.category.title}
                                 price={product.price}
+                                selectedProductsIds={selectedProductsIds}
+                                setSelectedProductsIds={setSelectedProductsIds}
                 />;
               }
           )

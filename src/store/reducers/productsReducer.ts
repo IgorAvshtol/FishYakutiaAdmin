@@ -6,7 +6,8 @@ export const initialState: ProductsState = {
   totalProductsPages: 1,
   loading: false,
   error: '',
-  createProductError: ''
+  createProductError: '',
+  deleteProductsError: '',
 };
 
 export const productsReducer = createSlice({
@@ -20,7 +21,7 @@ export const productsReducer = createSlice({
     getProductsSuccess: (state, action: PayloadAction<GetProducts>) => {
       state.loading = false;
       state.error = '';
-      state.products = action.payload.foods;
+      state.products = action.payload.foods.filter(food => !food.isDeleted);
       state.totalProductsPages = action.payload.totalFoodsPages;
     },
     getProductsFailure: (state, action: PayloadAction<string>) => {
@@ -34,6 +35,12 @@ export const productsReducer = createSlice({
     createProductsFailure: (state, action: PayloadAction<string>) => {
       state.createProductError = action.payload;
     },
+    deleteProductsSuccess: (state, action: PayloadAction<number[]>) => {
+      state.products = state.products.filter(product => !action.payload.includes(product.id));
+    },
+    deleteProductsFailure: (state, action: PayloadAction<string>) => {
+      state.deleteProductsError = action.payload;
+    },
   },
 });
 
@@ -42,5 +49,7 @@ export const {
   getProductsSuccess,
   getProductsFailure,
   createProductsSuccess,
-  createProductsFailure
+  createProductsFailure,
+  deleteProductsSuccess,
+  deleteProductsFailure
 } = productsReducer.actions;

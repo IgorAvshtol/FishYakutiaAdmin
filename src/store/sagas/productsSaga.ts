@@ -1,16 +1,18 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { createProduct, getProducts } from '@/api';
+import { createProduct, deleteProducts, getProducts } from '@/api';
 import {
   createProductsFailure,
   createProductsSuccess,
+  deleteProductsFailure,
+  deleteProductsSuccess,
   getProductsFailure,
   getProductsPending,
   getProductsSuccess
 } from '@store/reducers/productsReducer';
 import { closeModal } from '@store/reducers/modalReducer';
-import { CreateProductData } from '@/interfaces';
 import { SagaActions } from '@store/sagas/types';
+import { CreateProductData, DeleteProductsData } from '@/interfaces';
 
 function* getAllProducts(action: PayloadAction<number>) {
   try {
@@ -34,7 +36,18 @@ function* createNewProduct(action: PayloadAction<CreateProductData>) {
   }
 }
 
+function* deleteSelectedProducts(action: PayloadAction<DeleteProductsData>) {
+  try {
+    // @ts-ignore
+    const response = yield call(deleteProducts, action.payload);
+    yield put(deleteProductsSuccess(response));
+  } catch (error: any) {
+    yield put(deleteProductsFailure(error.message));
+  }
+}
+
 export function* watchGetProducts() {
   yield takeLatest(SagaActions.GET_PRODUCTS, getAllProducts);
   yield takeLatest(SagaActions.CREATE_PRODUCT, createNewProduct);
+  yield takeLatest(SagaActions.DELETE_PRODUCTS, deleteSelectedProducts);
 }
