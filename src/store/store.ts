@@ -7,6 +7,7 @@ import { ordersReducer } from '@store/reducers/ordersReducer';
 import { modalReducer } from '@store/reducers/modalReducer';
 import { categoriesReducer } from '@store/reducers/categoriesReducer';
 import { productsReducer } from '@store/reducers/productsReducer';
+import { settingsReducer } from '@store/reducers/settingsReducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   orders: ordersReducer.reducer,
   modals: modalReducer.reducer,
   categories: categoriesReducer.reducer,
-  products: productsReducer.reducer
+  products: productsReducer.reducer,
+  settings: settingsReducer.reducer
 });
 export const store = configureStore({
   reducer: rootReducer,

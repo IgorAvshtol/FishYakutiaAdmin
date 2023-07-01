@@ -12,5 +12,6 @@ export const getProductsSelector = (state: AppRootState) => state.products.produ
 export const getTotalProductsPagesCount = (state: AppRootState) => state.products.totalProductsPages;
 export const getCreateProductError = (state: AppRootState) => state.products.createProductError;
 export const getCreateProductLoading = (state: AppRootState) => state.products.loading;
+export const getSettingsDataSelector = (state: AppRootState) => state.settings;
 
 
