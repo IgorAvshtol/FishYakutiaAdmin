@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Image, Settings, SettingsState } from '@/interfaces';
+import { toast } from 'react-toastify';
+import { successOptions } from '@/others/toastTheme';
 
 export const initialState: SettingsState = {
   id: 1,
@@ -32,6 +34,7 @@ export const settingsReducer = createSlice({
       state.email = action.payload.email;
       state.image = action.payload.image;
       state.error = '';
+      toast.info('Настройки изменены', successOptions as any);
     },
     updateSettingsFailure: (state, action: PayloadAction<string>) => {
       state.error = action.payload;

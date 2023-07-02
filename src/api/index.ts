@@ -40,15 +40,6 @@ export const logoutUser = async () => {
   }
 };
 
-export const getAllUsersOrders = async (page: number) => {
-  try {
-    const response = await instance.get(`/orders?page=${page}`);
-    return response.data;
-  } catch (error: any) {
-    throw new Error(error.response.data.error);
-  }
-};
-
 export const getAllCategories = async () => {
   try {
     const response = await instance.get('/categories');

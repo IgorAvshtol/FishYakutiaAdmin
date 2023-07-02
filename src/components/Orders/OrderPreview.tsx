@@ -14,7 +14,7 @@ export const OrderPreview = ({ id, userName, userPhone, totalAmount, createdAt }
       <>
         <p className={styles.orderPreviewTitle}>#{id}</p>
         <p className={styles.orderPreviewTitle}>{timeParser(createdAt)}</p>
-        <p className={styles.orderPreviewTitle}>{userPhone}</p>
+        <p className={styles.orderPreviewPhoneTitle}>{userPhone}</p>
         <p className={styles.orderPreviewTitle}>{userName}</p>
         <p className={styles.orderPrice}>{totalAmount} ₽</p>
       </>

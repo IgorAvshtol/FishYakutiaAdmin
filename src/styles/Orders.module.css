@@ -27,9 +27,19 @@
 }
 
 .orderPreviewTitle {
+    width: calc(75% / 4);
     color: var(--primary-black-color);
     font-size: 14px;
     font-weight: 500;
+    text-align: start;
+}
+
+.orderPreviewPhoneTitle {
+    width: 25%;
+    color: var(--primary-black-color);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: start;
 }
 
 .orderPrice {

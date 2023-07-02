@@ -5,13 +5,6 @@ export interface RootState {
   activeTab: Tabs;
 }
 
-export interface OrdersState {
-  orders: Orders[];
-  totalOrdersPages: number;
-  loading: boolean;
-  error: string;
-}
-
 export interface ProductsState {
   products: Food[];
   totalProductsPages: number;

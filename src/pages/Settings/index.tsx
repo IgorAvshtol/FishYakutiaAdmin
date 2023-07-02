@@ -1,3 +1,4 @@
+import { ToastContainer } from 'react-toastify';
 import { SettingsForm } from '@components/SettingsForm';
 import styles from '@styles/Page.module.css';
 
@@ -6,6 +7,7 @@ export const Settings = () => {
       <div className={styles.mainBlock}>
         <p className={styles.title}>Настройки</p>
         <SettingsForm/>
+        <ToastContainer/>
       </div>
   );
 };

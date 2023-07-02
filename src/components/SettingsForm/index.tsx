@@ -16,10 +16,6 @@ interface SettingsForm {
   image: File;
 }
 
-const response = await fetch(photo);
-const blob = await response.blob();
-const defaultImageFile = new File([blob], 'photo.jpg', { type: 'image/jpg' });
-
 export const SettingsForm = () => {
   const dispatch = useAppDispatch();
   const settingsData = useAppSelector(getSettingsDataSelector);
@@ -44,12 +40,7 @@ export const SettingsForm = () => {
     formData.append('delivery', data.delivery);
     formData.append('description', data.description);
     formData.append('email', data.email);
-
-    if (file) {
-      formData.append('image', file as File);
-    } else {
-      formData.append('image', defaultImageFile);
-    }
+    formData.append('image', file as File);
 
     const payload = {
       id: Number(formData.get('id')) as number,
@@ -77,7 +68,6 @@ export const SettingsForm = () => {
     }
   };
 
-
   const getImageUrl = () => {
     if (file instanceof File) {
       return URL.createObjectURL(file);
@@ -88,12 +78,6 @@ export const SettingsForm = () => {
       return photo;
     }
   };
-
-  useEffect(() => {
-    if (settingsData.image) {
-      setFile(settingsData.image as any);
-    }
-  }, [settingsData.image]);
 
   useEffect(() => {
     dispatch(getSettingsAction());
