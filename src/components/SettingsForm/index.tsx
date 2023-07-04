@@ -26,6 +26,7 @@ export const SettingsForm = () => {
     register,
     handleSubmit,
     setError,
+    setValue,
     clearErrors,
     formState: { errors },
   } = useForm<SettingsForm>();
@@ -82,6 +83,14 @@ export const SettingsForm = () => {
   useEffect(() => {
     dispatch(getSettingsAction());
   }, []);
+
+  useEffect(() => {
+    if (settingsData) {
+      setValue('delivery', settingsData.delivery);
+      setValue('description', settingsData.description);
+      setValue('email', settingsData.email);
+    }
+  }, [setValue, settingsData.delivery, settingsData.description, settingsData.email]);
 
   return (
       <form onSubmit={handleSubmit(onSubmit)} className={styles.settingsFormBlock}>
