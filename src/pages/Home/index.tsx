@@ -20,6 +20,10 @@ export const Home = () => {
     dispatch(toggleTab(pathname as Tabs));
   }, [pathname]);
 
+  useEffect(() => {
+    sessionStorage.setItem('currentRoute', pathname);
+  }, [pathname]);
+
   if (!currentUser) return <Navigate to='/login'/>;
 
   return (

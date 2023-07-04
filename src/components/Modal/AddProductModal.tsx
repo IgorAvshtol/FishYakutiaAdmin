@@ -6,7 +6,7 @@ import { createProductAction } from '@store/sagas/actions';
 import { themeColors } from '@constants/themeColors';
 import { Button } from '@components/Button';
 import { Select } from '@components/Select';
-import photo from '@assets/photo.svg';
+import photo from '@assets/photo.jpg';
 import styles from '@styles/Modal.module.css';
 
 interface AddProductModal {
@@ -23,7 +23,7 @@ const priceUnit = [
 
 const response = await fetch(photo);
 const blob = await response.blob();
-const defaultImageFile = new File([blob], 'photo.svg', { type: 'image/svg+xml' });
+const defaultImageFile = new File([blob], 'photo.jpg', { type: 'image/jpg' });
 
 export const AddProductModal = () => {
   const dispatch = useAppDispatch();
@@ -33,8 +33,9 @@ export const AddProductModal = () => {
     register,
     handleSubmit,
     setValue,
+    setError,
     clearErrors,
-    formState: { errors},
+    formState: { errors },
   } = useForm<AddProductModal>();
 
   const categories = useAppSelector(getCategories);
@@ -61,10 +62,25 @@ export const AddProductModal = () => {
       categoryId: formData.get('categoryId') as string,
       image: formData.get('image') as File,
     };
+
+    if (file) {
+      formData.append('image', file as File);
+    } else {
+      formData.append('image', defaultImageFile);
+    }
+
+    const allowedImageTypes = ['image/jpeg', 'image/jpg'];
+
+    if (!allowedImageTypes.includes(payload.image.type)) {
+      setError('image', { message: 'Должен быть формат jpeg/jpg' });
+      return;
+    }
+
     dispatch(createProductAction(payload));
   };
 
   const uploadPhotoHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    clearErrors('image');
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       setFile(selectedFile);
@@ -105,10 +121,11 @@ export const AddProductModal = () => {
           <div className={styles.addPhotoInputBlock}>
             <img src={file ? URL.createObjectURL(file) : photo} alt='фото' className={styles.productPhoto}/>
             <label className={styles.addPhotoInput}>
-              <input type='file' {...register('image')} onChange={uploadPhotoHandler}/>
+              <input type='file' accept='image/jpeg, image/jpg' {...register('image')} onChange={uploadPhotoHandler}/>
               <span>Загрузить...</span>
             </label>
           </div>
+          {errors.image && <p className={styles.errorMessage}>{errors.image.message}</p>}
         </div>
         <Button buttonStyle={{ color: themeColors.ACTIVE, marginTop: '20px', padding: '10px 40px' }}>
           Сохранить

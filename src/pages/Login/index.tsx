@@ -7,7 +7,9 @@ import styles from '@/styles/LoginPage.module.css';
 export const Login = () => {
   const currentUser = useAppSelector(getCurrentUser);
 
-  if (currentUser) return <Navigate to='/orders'/>;
+  const currentRoute = sessionStorage.getItem('currentRoute');
+
+  if (currentUser) return <Navigate to={currentRoute || '/'} replace />;
 
   return (
       <div className={styles.main}>

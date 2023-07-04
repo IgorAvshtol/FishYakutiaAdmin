@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { CreateCategoryData, CreateProductData, DeleteProductsData, FormData, GetProductsPayload } from '@/interfaces';
+import {
+  CreateCategoryData,
+  CreateProductData,
+  DeleteProductsData,
+  FormData,
+  GetProductsPayload,
+  UpdateSettingsData,
+} from '@/interfaces';
 
 export const instance = axios.create({
   withCredentials: true,
@@ -27,15 +34,6 @@ export const me = async () => {
 export const logoutUser = async () => {
   try {
     const response = await instance.post('/auth/logout');
-    return response.data;
-  } catch (error: any) {
-    throw new Error(error.response.data.error);
-  }
-};
-
-export const getAllUsersOrders = async (page: number) => {
-  try {
-    const response = await instance.get(`/orders?page=${page}`);
     return response.data;
   } catch (error: any) {
     throw new Error(error.response.data.error);
@@ -94,6 +92,28 @@ export const createProduct = async (data: CreateProductData) => {
 export const deleteProducts = async (data: DeleteProductsData) => {
   try {
     const response = await instance.delete('/foods', { data });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
+export const getSettings = async () => {
+  try {
+    const response = await instance.get('/settings');
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+export const updateSettings = async (data: UpdateSettingsData) => {
+  try {
+    const response = await instance.patch(
+        '/settings',
+        data,
+        { headers: { 'Content-Type': 'multipart/form-data' } }
+    );
     return response.data;
   } catch (error: any) {
     throw new Error(error.message);

@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import { SettingsForm } from '@components/SettingsForm';
+import styles from '@styles/Page.module.css';
 
 export const Settings = () => {
-    return (
-        <>
-            <Link to="/menu">Menu</Link>
-            <div>Settings</div>
-            <Link to="/">Orders</Link>
-        </>
-    );
+  return (
+      <div className={styles.mainBlock}>
+        <p className={styles.title}>Настройки</p>
+        <SettingsForm/>
+        <ToastContainer/>
+      </div>
+  );
 };

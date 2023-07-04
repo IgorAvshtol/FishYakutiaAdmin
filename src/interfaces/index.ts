@@ -5,13 +5,6 @@ export interface RootState {
   activeTab: Tabs;
 }
 
-export interface OrdersState {
-  orders: Orders[];
-  totalOrdersPages: number;
-  loading: boolean;
-  error: string;
-}
-
 export interface ProductsState {
   products: Food[];
   totalProductsPages: number;
@@ -28,6 +21,23 @@ export interface ModalsState {
 export interface CategoriesState {
   categories: Category[];
   error: string;
+}
+
+export interface SettingsState {
+  id: number;
+  delivery: string;
+  description: string;
+  email: string;
+  image: Image;
+  error: string;
+}
+
+export interface Settings {
+  id: number;
+  delivery: string;
+  description: string;
+  email: string;
+  image: Image;
 }
 
 export interface FormData {
@@ -59,7 +69,7 @@ export enum SortField {
   NAME = 'name'
 }
 
-interface FoodImage {
+export interface Image {
   id: number;
   filename: string;
   path: string;
@@ -68,7 +78,7 @@ interface FoodImage {
 export interface Food {
   id: number;
   name: string;
-  images: FoodImage[];
+  images: Image[];
   price: string;
   isDeleted: boolean;
   category: Category;
@@ -135,4 +145,12 @@ export interface CreateProductData {
 
 export interface DeleteProductsData {
   userIds: number[];
+}
+
+export interface UpdateSettingsData {
+  id: number;
+  delivery: string;
+  description: string;
+  email: string;
+  image: File;
 }

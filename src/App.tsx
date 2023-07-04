@@ -8,6 +8,7 @@ import { OrdersPage } from '@pages/Orders';
 import { MenuPage } from '@pages/Menu';
 import { Settings } from '@pages/Settings';
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const App = () => {
   const dispatch = useAppDispatch();
