@@ -92,6 +92,12 @@ export const SettingsForm = () => {
     }
   }, [setValue, settingsData.delivery, settingsData.description, settingsData.email]);
 
+  useEffect(() => {
+    if (settingsData && settingsData.image && settingsData.image.path) {
+      setFile(settingsData.image as any);
+    }
+  }, [settingsData]);
+
   return (
       <form onSubmit={handleSubmit(onSubmit)} className={styles.settingsFormBlock}>
         <div className={styles.deliveryInputBlock}>

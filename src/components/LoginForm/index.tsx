@@ -25,7 +25,7 @@ export const LoginForm = () => {
         <h2 className={styles.title}>Вход</h2>
         <input {...register('email', { required: true })} className={styles.input}/>
         {errors.email && <span>This field is required</span>}
-        <input {...register('password', { required: true })} className={styles.input}/>
+        <input type='password' {...register('password', { required: true })} className={styles.input}/>
         {errors.password && <span>This field is required</span>}
         <button type='submit' className={styles.loginBtn}>Войти</button>
         <p className={styles.errorMessage}>{error}</p>
